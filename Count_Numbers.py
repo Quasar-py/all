@@ -42,7 +42,8 @@ while True:
             e += 1
         if len(st) == 0:a += 1
         if a == 0 and len(st) != 0:st = int(st)
-        else:print('Ошибка!')
+        else:
+            print('Ошибка!')
     def print_kol_vo():
         global n
         n = 0
