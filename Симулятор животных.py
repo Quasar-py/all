@@ -22,7 +22,7 @@ class Field:
             for x in range(self.size):
                 x += 1
                 for i in self.hares:
-                    if i == (x, y):
+                    if i == (x+1, y):
                         field[y].pop(-x)
                         field[y].insert(x, '🟪')
         field[1].pop(-1)
@@ -102,20 +102,20 @@ class Tigers(Field):
         else:
             return True
     def run_home(self):
-        self.field = {}
-        for _ in range(1, self.size + 1):
-            self.field[_] = []
-            for y in range(self.size):
-                y += 1
-                self.field[y] = ['🟩'] * self.size
-                for x in range(self.size):
-                    for i in self.hares:
-                        if i == (x + 1, y):
-                            self.field[y].pop(-x)
-                            self.field[y].insert(x, '🟪')
-        self.field[1].pop(-1)
-        self.field[1].insert(0, '🟧')
-tiger = Tigers(8,2)
+        field = {}
+        for y in range(self.size):
+            y += 1
+            field[y] = ['🟩'] * self.size
+            for x in range(self.size):
+                x += 1
+                for i in self.hares:
+                    if i == (x + 1, y):
+                        field[y].pop(-x)
+                        field[y].insert(x, '🟪')
+        field[1].pop(-1)
+        field[1].insert(0, '🟧')
+        self.field = field
+tiger = Tigers(5,2)
 tiger.show()
 print()
 tiger.check()
@@ -125,4 +125,3 @@ while tiger.attack_prey():
     print()
 tiger.run_home()
 tiger.show()
-print(tiger.hares)
